@@ -78,7 +78,7 @@ function php::semver::resolve_version() {
     local url
     local version
 
-    url="${semver_server}/${component}-${stack}/resolve/${required_version}"
+    url="${semver_server}/${component}-${stack}/resolve/$( printf '%s' "${required_version}" | jq -sRr @uri)"
 
     version="$( curl --fail --silent --location "${url}" )"
     rc="${?}"
